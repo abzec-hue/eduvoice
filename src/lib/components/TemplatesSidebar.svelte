@@ -1,5 +1,5 @@
 <script>
-    // NOTE: Templates sidebar with drag & drop 
+
     import { templates } from '$lib/data/templates.js';
     
     function handleDragStart(event, template) {
