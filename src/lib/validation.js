@@ -1,5 +1,5 @@
-
-const badWords = [
+// badWords filter
+const badWords = [ 
     // General profanity and insults
     'bastard', 'bellend', 'bloodclaat', 'bumberclat', 'dickhead', 'shit', 'shite', 
     'son of a bitch', 'twat', 'fuck', 'motherfucker', 'bitch', 'arsehole', 'beaver',
@@ -29,42 +29,22 @@ const badWords = [
     
     // Additional slurs
     'machod', 'uloo ka patha'
-
-    // All from Public attitudes towards offensive language on TV and Radio pdf
 ];
 
 export function validateText(text) {
-    if (!text || text.trim() === '') {
-        return { 
-            cleanText: text, 
-            hasBadWords: false, 
-            detectedWords: [] 
-        };
-    }
-
     let cleanText = text;
     let hasBadWords = false;
     let detectedWords = [];
     
-    badWords.forEach(badWord => {
-        // Use word boundaries to match whole words only
-        const regex = new RegExp(`\\b${badWord}\\b`, 'gi');
-        const matches = text.match(regex);
-        
-        if (matches) {
-            // Replace with asterisks (maintaining word length)
-            const replacement = '*'.repeat(badWord.length);
-            cleanText = cleanText.replace(regex, replacement);
+    for (const badWord of badWords) {
+        if (text.toLowerCase().includes(badWord.toLowerCase())) {
             hasBadWords = true;
+            detectedWords.push(badWord);
             
-            // detected words
-            matches.forEach(match => {
-                if (!detectedWords.includes(match.toLowerCase())) {
-                    detectedWords.push(match.toLowerCase());
-                }
-            });
+            const regex = new RegExp(badWord, 'gi');
+            cleanText = cleanText.replace(regex, '*'.repeat(badWord.length));
         }
-    });
+    }
     
     return { 
         cleanText, 
@@ -76,10 +56,5 @@ export function validateText(text) {
 export function getValidationMessage(detectedWords) {
     if (detectedWords.length === 0) return '';
     
-    if (detectedWords.length <= 3) {
-        return `Inappropriate language detected please avoid using: ${detectedWords.join(', ')}`;
-    } else {
-        return `Multiple inappropriate terms (${detectedWords.length}) detected and removed from your text.`;
-    }
+    return `Inappropriate language detected: ${detectedWords.join(', ')}`;
 }
-
