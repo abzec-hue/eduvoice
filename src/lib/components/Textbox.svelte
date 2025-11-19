@@ -154,7 +154,8 @@
 
     .primary:hover, .secondary:hover {
         background-color: #3BB3FF;
-        opacity: 0.9;
+         transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .play-pause-button {
@@ -178,6 +179,8 @@
     
     .play-pause-button:hover {
         background-color: #3399ff;
+         transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 </style>
 

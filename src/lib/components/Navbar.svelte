@@ -43,7 +43,6 @@
     }
 
     .nav-links a {
-        text-decoration: none;
         color: #333;
         font-weight: 500;
     }
@@ -53,7 +52,6 @@
     }
 
     .login-button {
-        text-decoration: none;
         color: #333;
         font-weight: 500;
     }
@@ -71,7 +69,6 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="/Home">Home</a></li>
-                <li><a href="/templates">Templates</a></li>
                 <li><a href="/About">About</a></li>
                 <li><a href="/Contact">Contact</a></li>
             </ul>

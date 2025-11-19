@@ -24,6 +24,7 @@
         border: 1px solid #ccc;
         border-radius: 8px;
         padding: 20px;
+         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         height: fit-content;
     }
 
@@ -41,7 +42,7 @@
         background: white;
         border: 1px solid #ddd;
         border-radius: 4px;
-        cursor: grab;
+        cursor: pointer;
         transition: all 0.2s ease;
         user-select: none;
     }
@@ -54,7 +55,7 @@
     }
 
     .template-item:active {
-        cursor: grabbing;
+        cursor: pointer;
     }
 
     .template-name {
@@ -74,7 +75,7 @@
 </style>
 
 <div class="templates-sidebar">
-    <div class="templates-title">Drag and drop templates</div>
+    <div class="templates-title">Templates</div>
     {#each templates as template}
         <div class="template-item" 
              draggable="true"

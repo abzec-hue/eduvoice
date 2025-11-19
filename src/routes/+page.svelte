@@ -7,7 +7,6 @@
     let userText = '';
     let selectedTone = '';
     let selectedVoice = '';
-    let fileName = '';
     
     function handleTextUpdate(event) {
         userText = event.detail.text;
@@ -19,16 +18,6 @@
     
     function handleVoiceSelect(event) {
         selectedVoice = event.detail.voice;
-    }
-    
-    function handleFileSelect(event) {
-        selectedFile = event.detail.file;
-        fileName = event.detail.name;
-    }
-    
-    function handleFileRemove() {
-        selectedFile = null;
-        fileName = '';
     }
     
     function handleTemplateDrop(event) {
@@ -58,11 +47,13 @@
         flex-direction: column;
         gap: 20px;
         flex-shrink: 0;
+        margin-top: 60px;
     }
 
     .form-section {
         flex: 1;
         margin-top: 60px;
+        
     }
 </style>
 
@@ -84,11 +75,7 @@
         <div class="form-section">
             <Textbox 
                 {userText}
-                {selectedFile}
-                {fileName}
                 on:textUpdate={handleTextUpdate}
-                on:fileSelect={handleFileSelect}
-                on:fileRemove={handleFileRemove}
             />
         </div>
     </div>

@@ -1,7 +1,5 @@
 <script>
     // dropdown tone and voice
-
-    import { onMount } from 'svelte';
     
     export let selectedTone = '';
     export let selectedVoice = '';
@@ -44,6 +42,7 @@
         border-radius: 8px;
         padding: 25px;
         height: fit-content;
+         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .dropdown-title {
@@ -56,7 +55,7 @@
 
     .dropdown-row {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: 15px;
         width: 100%;
     }
@@ -81,6 +80,9 @@
 
     .tone-button:hover, .voice-button:hover {
         background-color: #f5f5f5;
+        background: #e9f7fe;
+         transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         border-color: #3BB3FF;
     }
 
@@ -114,7 +116,7 @@
 </style>
 
 <div class="dropdown-container">
-    <div class="dropdown-title">Settings</div>
+    <div class="dropdown-title">Sound Options</div>
     <div class="dropdown-row">
         <div class="tone-selector">
             <button class="tone-button" on:click={toggleToneDropdown}>
