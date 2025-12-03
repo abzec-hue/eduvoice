@@ -1,6 +1,7 @@
 <script>
 
     import { templates } from '$lib/data/templates.js';
+import { validateText, getValidationMessage } from '$lib/validation.js';
     
     function handleDragStart(event, template) {
         event.dataTransfer.setData('text/plain', template.content);
