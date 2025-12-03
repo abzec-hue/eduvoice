@@ -59,4 +59,4 @@ export function getValidationMessage(detectedWords) {
     if (detectedWords.length === 0) return '';
     
     return `Inappropriate language detected: ${detectedWords.join(', ')}`;
-} this is my validation code
+} 
