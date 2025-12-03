@@ -36,13 +36,11 @@ export function validateText(text) {
     let hasBadWords = false;
     let detectedWords = [];
     
-    // Simple loop through bad words
     for (const badWord of badWords) {
         if (text.toLowerCase().includes(badWord.toLowerCase())) {
             hasBadWords = true;
             detectedWords.push(badWord);
             
-            // Simple replacement - replace all occurrences
             const regex = new RegExp(badWord, 'gi');
             cleanText = cleanText.replace(regex, '*'.repeat(badWord.length));
         }
