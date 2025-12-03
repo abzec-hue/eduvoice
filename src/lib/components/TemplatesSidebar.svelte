@@ -1,88 +1,75 @@
 <script>
-
     import { templates } from '$lib/data/templates.js';
-import { validateText, getValidationMessage } from '$lib/validation.js';
-    
-    function handleDragStart(event, template) {
-        event.dataTransfer.setData('text/plain', template.content);
-    }
-
-    function handleDragOver(event) {
-        event.preventDefault();
-    }
-
-    function handleDrop(event) {
-        event.preventDefault();
-        const templateContent = event.dataTransfer.getData('text/plain');
-        dispatch('templateDrop', { text: templateContent });
-    }
-    
 </script>
 
 <style>
-    .templates-sidebar {
+    .sidebar {
         background: #f9f9f9;
         border: 1px solid #ccc;
         border-radius: 8px;
-        padding: 20px;
-         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        height: fit-content;
+        padding: 15px;
+        max-height: 400px;
+        display: flex;
+        flex-direction: column;
     }
-
-    .templates-title {
+    
+    .title {
         font-weight: bold;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         color: #333;
         font-size: 16px;
         text-align: center;
     }
-
-    .template-item {
-        padding: 12px;
-        margin-bottom: 10px;
+    
+    .template-list {
+        overflow-y: auto;
+        flex-grow: 1;
+    }
+    
+    .template {
+        padding: 10px;
+        margin-bottom: 8px;
         background: white;
         border: 1px solid #ddd;
         border-radius: 4px;
         cursor: pointer;
-        transition: all 0.2s ease;
-        user-select: none;
     }
-
-    .template-item:hover {
+    
+    .template:hover {
+         background-color: #f5f5f5;
         background: #e9f7fe;
-        border-color: #3BB3FF;
-        transform: translateY(-2px);
+         transform: translateY(-2px);
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border-color: #3BB3FF;
     }
-
-    .template-item:active {
-        cursor: pointer;
-    }
-
+    
     .template-name {
         font-weight: 500;
-        color: #333;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
     }
-
+    
     .template-category {
         font-size: 12px;
         color: #666;
         background: #f0f0f0;
         padding: 2px 6px;
         border-radius: 3px;
-        display: inline-block;
     }
 </style>
 
-<div class="templates-sidebar">
-    <div class="templates-title">Templates</div>
-    {#each templates as template}
-        <div class="template-item" 
-             draggable="true"
-             on:dragstart={(e) => handleDragStart(e, template)}>
-            <div class="template-name">{template.name}</div>
-            <div class="template-category">{template.category}</div>
-        </div>
-    {/each}
+<div class="sidebar">
+    <div class="title">Templates</div>
+    
+    <!-- Template List - All Categories -->
+    <div class="template-list">
+        {#each templates as template}
+            <div class="template" 
+                 draggable="true"
+                 on:dragstart={(e) => e.dataTransfer.setData('text/plain', template.content)}
+                 on:click={() => dispatch('templateDrop', { text: template.content })}> 
+                <div class="template-name">{template.name}</div>
+                <div class="template-category">{template.category}</div>
+            </div>
+        {/each}
+    </div>
 </div>
