@@ -1,5 +1,5 @@
 <script>
-    // import { validateText, getValidationMessage } from '$lib/validation.js';
+ import { validateText, getValidationMessage } from '$lib/validation.js';
     
     export let userText = '';
     export let selectedFile = null;
